@@ -2,12 +2,17 @@ package com.example.colorchange;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 public class AddPlayer extends AppCompatActivity implements View.OnClickListener {
 
@@ -27,6 +32,18 @@ public class AddPlayer extends AppCompatActivity implements View.OnClickListener
         etName2=( EditText) findViewById(R.id.etName2);
 
         btnPlay.setOnClickListener(this);
+
+        //מאתחל  את הטקסט טו ספיצ
+        textToSpeech = new TextToSpeech(getApplicationContext(),new TextToSpeech.OnInitListener() {
+
+            @Override
+            public void onInit(int i){
+                if(i== TextToSpeech.SUCCESS){
+                    int lang = textToSpeech.setLanguage(Locale.ENGLISH);
+                }
+            }
+        });
+
     }
 
 
@@ -39,7 +56,7 @@ public class AddPlayer extends AppCompatActivity implements View.OnClickListener
             etName2;            //
 
 
-
+    private TextToSpeech textToSpeech; //כשעוברים למסך הבא  מופעל רמקול שאומר את השמות
 
 
    //שלב ג - מעבר בין ADD PLAYER לדף של משחק הזיכרון
@@ -56,10 +73,36 @@ public class AddPlayer extends AppCompatActivity implements View.OnClickListener
             String name1 = etName1.getText().toString();
             String name2 =etName2.getText().toString();
 
-            intent.putExtra("DATA1",name1);
-            intent.putExtra("DATA2", name2);
+            if (name1.length() ==0 || name2.length()==0|| name1.equals(name2)){
+                new AlertDialog.Builder(this)
+                        .setTitle("ERORE")
+                        .setMessage("not a good name")
+                        .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
-            startActivity(intent);
+                            }
+                        })
+                        .setIcon(R.drawable.error)
+                        .show();
+            }
+            else{
+                //משמיע טקסט
+
+                textToSpeech.speak("Enjoy and Good Luck! " + name1 + " and " + name2, TextToSpeech.QUEUE_FLUSH, null);
+
+
+                intent.putExtra("DATA1",name1);
+                intent.putExtra("DATA2", name2);
+
+                startActivity(intent);
+            }
+
+
+
+
+
+
         }
     }
 

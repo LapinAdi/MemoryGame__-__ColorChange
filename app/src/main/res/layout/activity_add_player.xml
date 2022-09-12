@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/shapeback"
     tools:context=".AddPlayer">
 
     <LinearLayout
@@ -36,8 +37,9 @@
             android:layout_marginRight="40dp"
             android:layout_marginBottom="40dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="הכנס שם שחקן 1" />    //לזכור את זה זה חשוב
+            android:hint="הכנס שם שחקן 1"
+            android:inputType="textPersonName" />
+        //לזכור את זה זה חשוב
 
         <EditText
             android:id="@+id/etName2"
@@ -48,8 +50,9 @@
             android:layout_marginRight="40dp"
             android:layout_marginBottom="40dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="הכן שם שחקן 2" /> // לזכור את זה זה חשוב
+            android:hint="הכן שם שחקן 2"
+            android:inputType="textPersonName" />
+        // לזכור את זה זה חשוב
 
         <Button
             android:id="@+id/btnPlay"
