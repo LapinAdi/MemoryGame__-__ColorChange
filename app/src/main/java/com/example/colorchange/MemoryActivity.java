@@ -89,20 +89,21 @@ public class MemoryActivity extends AppCompatActivity implements View.OnClickLis
 
     public void onClick(View v) {
 
+        System.out.println("YAWDADAW");
         // ---------------------------------------------------כפתור איתחול --------
         if (v.getId() == btnRestart.getId()) {
 
             // משבץ תמונת אוגר לכל המטריצייה
 
-            for (int j = 0; j < MemoryActivity.ROW ; j++) {
-                for (int k = 0; k < MemoryActivity.COL ; k++) {
+            for (int j = 0; j < MemoryActivity.ROW; j++) {
+                for (int k = 0; k < MemoryActivity.COL; k++) {
 
-                        this.cards[j][k].setImageResource(R.drawable.hampster);
-                    }
+                    this.cards[j][k].setImageResource(R.drawable.hampster);
                 }
             }
-
             gManager.newMatt();
+        }
+
 
 
 
@@ -116,7 +117,8 @@ public class MemoryActivity extends AppCompatActivity implements View.OnClickLis
                 if (v.getId() == this.cards[j][k].getId()) {
                     found = true;
                     this.cards[j][k].setImageResource(pics[gManager.getNumbers(j, k)]);
-                    Toast.makeText(getApplicationContext(), " " + j + ":" + k, Toast.LENGTH_LONG).show();
+                    // Toast.makeText(getApplicationContext(), " " + j + ":" + k, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), " "+gManager.getNumbers(j,k)+" ", Toast.LENGTH_LONG).show();
                 }
             }
         }

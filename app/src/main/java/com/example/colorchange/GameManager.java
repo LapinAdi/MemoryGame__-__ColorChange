@@ -1,5 +1,7 @@
 package com.example.colorchange;
 
+import android.util.Log;
+
 import java.util.Random;
 
 public class GameManager {
@@ -48,6 +50,7 @@ public class GameManager {
         while (j < 4) {
             while (k < 5) {
                 this.numbers[j][k] = rndArr[i];
+                System.out.println(i);
                 i++;
                 k++;
 
@@ -59,9 +62,11 @@ public class GameManager {
 
     }
 
+
     public int getNumbers(int i,int j) {
         return numbers[i][j];
     }
+
 
     public void setNumbers(int[][] numbers) {
         this.numbers = numbers;
