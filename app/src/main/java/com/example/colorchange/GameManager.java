@@ -66,7 +66,10 @@ public class GameManager {
     public int getNumbers(int i,int j) {
         return numbers[i][j];
     }
+public  boolean isSame (int prevJ ,int prevK,int currJ, int currK){
 
+        return numbers[prevJ][prevK]== numbers[currJ][currK];
+}
 
     public void setNumbers(int[][] numbers) {
         this.numbers = numbers;

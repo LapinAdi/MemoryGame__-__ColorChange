@@ -27,7 +27,11 @@ public class MemoryActivity extends AppCompatActivity implements View.OnClickLis
 
     private int index,
             whosTurn,   //
-            numOfClicks;
+            numOfClicks,
+             currJ,
+            currK,
+            prevJ,
+            prevK;
 
     private GameManager gManager;
     private ImageButton[][] cards;    //
@@ -99,6 +103,8 @@ public class MemoryActivity extends AppCompatActivity implements View.OnClickLis
                 for (int k = 0; k < MemoryActivity.COL; k++) {
 
                     this.cards[j][k].setImageResource(R.drawable.hampster);
+                    this.cards[j][k].setVisibility(View.VISIBLE);
+                    this.cards[j][k].setClickable(true);
                 }
             }
             gManager.newMatt();
@@ -119,7 +125,31 @@ public class MemoryActivity extends AppCompatActivity implements View.OnClickLis
                     this.cards[j][k].setImageResource(pics[gManager.getNumbers(j, k)]);
                     // Toast.makeText(getApplicationContext(), " " + j + ":" + k, Toast.LENGTH_LONG).show();
                     Toast.makeText(getApplicationContext(), " "+gManager.getNumbers(j,k)+" ", Toast.LENGTH_LONG).show();
-                }
+                    //helps to check first or seconde card
+                    numOfClicks++;
+                    if(numOfClicks ==1){
+                    prevJ = j;
+                    prevK=k;
+                    this.cards[prevJ][prevK].setClickable(false); //disable button
+                    }
+                    else {
+                       currJ=j;
+                       currK=k;
+                        this.cards[currJ][currK].setClickable(false);
+                        numOfClicks=0;  //  end of the turn
+
+                        if (gManager.isSame(prevJ,prevK,currJ,currK)){
+                            this.cards[currJ][currK].setVisibility(View.INVISIBLE);
+                            this.cards[prevJ][prevK].setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            this.cards[prevJ][prevK].setClickable(true);
+                            this.cards[currJ][currK].setClickable(true);
+                        }
+
+                        }
+
+                    }
             }
         }
 
@@ -129,6 +159,7 @@ public class MemoryActivity extends AppCompatActivity implements View.OnClickLis
 
             startActivity(intent);
         }
+
 
 
     }
