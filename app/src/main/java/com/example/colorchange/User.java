@@ -17,4 +17,13 @@ public class User {
         this.pics=new int[size];
     }
 
+    public void addScore (){
+        this.score++;
+    }
+
+    public  int  getScore(){
+
+        return this.score;
+
+    }
 }

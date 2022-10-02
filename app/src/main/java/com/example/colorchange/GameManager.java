@@ -10,11 +10,13 @@ public class GameManager {
     private  User [] users ;
 
 
-    public GameManager(MemoryActivity gameActivity)
+    public GameManager(MemoryActivity gameActivity,  String player1, String player2)
     {
         this.numbers=new int[4][5];
         newMatt();
-        this.users=new User[4];
+        this.users=new User[2];
+        this.users[0] = new User(player1);
+        this.users[1] = new User(player2);
     }
 
 
@@ -62,6 +64,28 @@ public class GameManager {
 
     }
 
+public  void incScore ( boolean player) {
+
+        // if (player) 1 else 0
+        //users[player ? 1 : 0].addScore();
+
+    if (player){
+        users[1].addScore();
+    }
+    else {
+        users[0].addScore();
+    }
+}
+
+public  int getScore (boolean player){
+
+        if (player){
+            return this.users[1].getScore();
+        }
+        else
+            return  this.users[0].getScore();
+
+}
 
     public int getNumbers(int i,int j) {
         return numbers[i][j];
@@ -71,15 +95,8 @@ public  boolean isSame (int prevJ ,int prevK,int currJ, int currK){
         return numbers[prevJ][prevK]== numbers[currJ][currK];
 }
 
-    public void setNumbers(int[][] numbers) {
-        this.numbers = numbers;
+    public void setNumbers(int j ,int k  ,int num) {
+        this.numbers[j][k] = num;
     }
 
-    public User getUser( int i) { //
-        return users[i];
-    }
-
-    public void setUsers(User[] users) {    //
-        this.users = users;
-    }
 }
