@@ -64,6 +64,10 @@ public class GameManager {
 
     }
 
+    public void addCard(int card, boolean player) {
+        returnPlayer(player).getPics().add(card);
+    }
+
 public  void incScore ( boolean player) {
 
         // if (player) 1 else 0
@@ -86,6 +90,24 @@ public  int getScore (boolean player){
             return  this.users[0].getScore();
 
 }
+
+    public  String getName (boolean player){
+
+        if (player){
+            return this.users[1].getName();
+        }
+        else
+            return  this.users[0].getName();
+
+    }
+
+    public User returnPlayer(boolean player){
+        if (player){
+            return this.users[1];
+        }
+        else
+            return  this.users[0];
+    }
 
     public int getNumbers(int i,int j) {
         return numbers[i][j];

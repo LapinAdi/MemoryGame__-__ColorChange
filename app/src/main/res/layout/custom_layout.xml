@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="121dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvDname"
+        android:layout_width="match_parent"
+        android:layout_height="133dp"
+        android:text="TextView" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="298dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="388dp"
+            android:layout_height="196dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp">
+
+            <ImageButton
+                android:id="@+id/imgCard0"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:layout_column="1"
+                app:layout_row="1"
+                app:srcCompat="@drawable/hampster" />
+
+            <ImageButton
+                android:id="@+id/imgCard1"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:layout_column="2"
+                app:layout_row="1"
+                app:srcCompat="@drawable/hampster" />
+
+            <ImageButton
+                android:id="@+id/imgCard2"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:layout_column="3"
+                app:layout_row="1"
+                app:srcCompat="@drawable/hampster" />
+
+            <ImageButton
+                android:id="@+id/imgCard3"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:layout_column="4"
+                app:layout_row="1"
+                app:srcCompat="@drawable/hampster" />
+
+            <ImageButton
+                android:id="@+id/imgCard4"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:layout_column="5"
+                app:layout_row="1"
+                app:srcCompat="@drawable/hampster" />
+
+            <ImageButton
+                android:id="@+id/imgCard5"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:layout_column="1"
+                app:layout_row="2"
+                app:srcCompat="@drawable/hampster" />
+
+            <ImageButton
+                android:id="@+id/imgCard6"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:layout_column="2"
+                app:layout_row="2"
+                app:srcCompat="@drawable/hampster" />
+
+            <ImageButton
+                android:id="@+id/imgCard7"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:layout_column="3"
+                app:layout_row="2"
+                app:srcCompat="@drawable/hampster" />
+
+            <ImageButton
+                android:id="@+id/imgCard8"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:layout_column="4"
+                app:layout_row="2"
+                app:srcCompat="@drawable/hampster" />
+
+            <ImageButton
+                android:id="@+id/imgCard9"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:layout_column="5"
+                app:layout_row="2"
+                app:srcCompat="@drawable/hampster" />
+
+
+
+        </androidx.gridlayout.widget.GridLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnDback"
+            android:layout_width="match_parent"
+            android:layout_height="87dp"
+            android:text="Button" />
+    </LinearLayout>
+
+</LinearLayout>

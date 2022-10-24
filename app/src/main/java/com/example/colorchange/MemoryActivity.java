@@ -2,6 +2,7 @@ package com.example.colorchange;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
@@ -23,7 +24,7 @@ public class MemoryActivity extends AppCompatActivity implements View.OnClickLis
             tvScore1, tvScore2;
 
     private Button btnBack,
-            btnRestart;
+            btnRestart,btnMyCards;
 
     private int[] pics = {R.drawable.img0, R.drawable.img1, R.drawable.img2, R.drawable.img3, R.drawable.img4, R.drawable.img5, R.drawable.img6, R.drawable.img7, R.drawable.img8, R.drawable.img9};          // מערך של כל התמונות
 
@@ -42,6 +43,14 @@ public class MemoryActivity extends AppCompatActivity implements View.OnClickLis
     public static final int ROW = 4, COL = 5;       // fix
 
     private final Handler handler = new Handler();
+
+    //---הגדרת דיאלוג ותכונותיו---
+
+    private Dialog dialog; //עבור החלון הקופץ
+    private TextView tvDname ; //שם השחקן לו משוייך הדיאלוג
+    private  Button btnDback,getBtnMyCards; // כפתור חזרה למשחק
+    private ImageButton [] selfButtons;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +92,8 @@ public class MemoryActivity extends AppCompatActivity implements View.OnClickLis
         btnRestart = (Button) findViewById(R.id.btnRestart);
         btnRestart.setOnClickListener(this);
 
+        btnMyCards=(Button)findViewById(R.id.btnMyCards) ;
+        btnMyCards.setOnClickListener(this);
 
         // מגדירה את כל הכפתורים במטריצייה
 
@@ -99,8 +110,8 @@ public class MemoryActivity extends AppCompatActivity implements View.OnClickLis
 
         //------------------------------------------------------------------------------------
 
-
-        //
+        // -----אתחול מערך התמונות של הדיאלוג ------
+        selfButtons = new ImageButton[10];
 
 
 
@@ -160,6 +171,7 @@ public class MemoryActivity extends AppCompatActivity implements View.OnClickLis
 
                             //score
                             gManager.incScore(turn);
+                            gManager.addCard(gManager.getNumbers(currJ, currK), turn);
                             updateScore();
 
                             //puts -1 insted of the num picture
@@ -190,6 +202,11 @@ public class MemoryActivity extends AppCompatActivity implements View.OnClickLis
             startActivity(intent);
         }
 
+        //הדיאלוג נפתח במהלך המשחק על ידי לחיצה  כל שחקן יוכל להציג בתורו את מצב הקלפים שבידיו
+        if (v.getId()== btnMyCards.getId()){
+            createDilog();
+        }
+
 
     }
 
@@ -201,5 +218,54 @@ public class MemoryActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    //---יצירת הדיאלוג ---
+
+    public void createDilog (){
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.custom_layout);
+        dialog.setTitle("choose a card ");
+        dialog.setCancelable(true);
+
+
+        tvDname=(TextView) dialog.findViewById(R.id.tvDname);
+        tvDname.setText(""+gManager.getName(turn)) ;    //משיג את שם בשחקן לפי התור
+
+        btnDback = (Button) dialog.findViewById(R.id.btnDback);
+        btnDback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {        //בלחיצה סגור את חלון הדיאלוג
+                dialog.cancel();
+            }
+        });
+
+        String str = "";
+        int resId;
+
+        //-בניית רשימת התמונות שבידי השחקן -
+        for(int i=0;i<10;i++){
+            str="imgCard"+i;
+            resId= getResources().getIdentifier(str,"id",getPackageName());
+            selfButtons[i]=dialog.findViewById(resId);
+            selfButtons[i].setVisibility(View.VISIBLE);
+        }
+        playerHand(); // הצגת הקלפים שבידי השקחן הנוכחי
+        dialog.show();
+    }
+
+    //--פעולה המציגה ויזואלית את הקלפים שבידי השחקן --
+
+    public void playerHand(){
+        Log.d("****",'\n'+ gManager.returnPlayer(turn).toString());
+
+        //-הצגת הקלפים שעל ידי השחקן -
+        for(int i=0;i< gManager.returnPlayer(turn).getPics().size() ;i++) {
+           System.out.println(" "+i +" player: "+this.turn + "size: " + gManager.returnPlayer(turn).getPics().size());
+            selfButtons[i].setImageResource(pics[gManager.returnPlayer(turn).getPics().get(i)]);
+        }
+        //הסתרת הכפתורים החסרים
+        for(int i = gManager.returnPlayer(turn).getPics().size(); i < 10; i++) {
+            selfButtons[i].setVisibility(View.INVISIBLE);
+        }
+    }
 
 }

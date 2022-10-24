@@ -2,19 +2,21 @@ package com.example.colorchange;
 
 import android.media.Image;
 
+import java.util.ArrayList;
+
 public class User {
 
 
     private  String name;
     private  int score;
-    private int  [] pics;       //  קלפים שנמצאו
+    private ArrayList<Integer> pics;       //  קלפים שנמצאו
     private int size=10;
 
     public User(String name)
     {
         this.name=name;
         this.score=0;
-        this.pics=new int[size];
+        this.pics = new ArrayList<>();
     }
 
     public void addScore (){
@@ -25,5 +27,13 @@ public class User {
 
         return this.score;
 
+    }
+
+    public ArrayList<Integer> getPics() {
+        return pics;
+    }
+
+    public String getName() {
+        return name;
     }
 }

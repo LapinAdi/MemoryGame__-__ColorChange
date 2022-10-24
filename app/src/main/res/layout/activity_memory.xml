@@ -262,11 +262,11 @@
             android:text="Back" />
 
         <Button
-            android:id="@+id/btnScore"
+            android:id="@+id/btnMyCards"
             android:layout_width="145dp"
             android:layout_height="96dp"
             android:layout_weight="1"
-            android:text="Score" />
+            android:text="MyCards" />
 
         <Button
             android:id="@+id/btnRestart"
